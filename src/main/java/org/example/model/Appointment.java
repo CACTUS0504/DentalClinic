@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "appointments")
@@ -29,8 +29,6 @@ public class Appointment {
     @Column(name = "appointment_date")
     private Date appointment_date;
 
-    @Column(name = "appointment_time")
-    private Time time;
     @ManyToOne
     @JoinColumn(name="doctor_id", insertable = false, updatable = false)
     @JsonIgnore

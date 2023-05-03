@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+</div>
+<form method="post" action="/api/authorization/login">
+    <h3>Login</h3>
+
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" placeholder="Email or Phone" >
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" placeholder="Password">
+
+    <button>Log In</button>
+    <div class="social">
+        <p><a href="/api/authorization/registration">Sign up</a></p>
+        <p class="go">  No account?</p>
+        <button class="but" type="submit" onclick="/api/authorization/registration">Sign up</button>
+    </div>
+</form>
+</body>
+</html>
