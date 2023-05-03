@@ -7,37 +7,27 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name = "patients")
+@Table(name = "reviews")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Patient {
+public class Review {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "first_name")
-    private String firstName;
+    @Column(name = "title")
+    private String title;
 
-    @Column(name = "last_name")
-    private String lastName;
-
-    @Column(name = "middle_name")
-    private String middleName;
+    @Column(name = "content")
+    private String content;
 
     @ManyToOne
     @JoinColumn(name="doctor_id", insertable = false, updatable = false)
     @JsonIgnore
     private Doctor doctor;
-
-    @OneToMany(mappedBy = "patient")
-    private List<Prescription> prescriptions;
-
-    @OneToMany(mappedBy = "patient")
-    private List<Appointment> appointments;
 }

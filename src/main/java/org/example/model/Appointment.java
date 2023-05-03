@@ -7,37 +7,37 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
+import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 @Entity
-@Table(name = "patients")
+@Table(name = "appointments")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Patient {
+public class Appointment {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "first_name")
-    private String firstName;
+    @Column(name = "title")
+    private String title;
 
-    @Column(name = "last_name")
-    private String lastName;
+    @Column(name = "appointment_date")
+    private Date appointment_date;
 
-    @Column(name = "middle_name")
-    private String middleName;
-
+    @Column(name = "appointment_time")
+    private Time time;
     @ManyToOne
     @JoinColumn(name="doctor_id", insertable = false, updatable = false)
     @JsonIgnore
     private Doctor doctor;
 
-    @OneToMany(mappedBy = "patient")
-    private List<Prescription> prescriptions;
-
-    @OneToMany(mappedBy = "patient")
-    private List<Appointment> appointments;
+    @ManyToOne
+    @JoinColumn(name="doctor_id", insertable = false, updatable = false)
+    @JsonIgnore
+    private Patient patient;
 }
