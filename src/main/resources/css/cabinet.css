@@ -1,0 +1,154 @@
+body{
+    margin : 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+.navbar-container{
+    position: relative;
+    border-top: 1px solid transparent;
+    background-color : #4696a7;
+    width : 100vw;
+    height : 80px;
+    display: flex;
+    justify-content: center;
+}
+
+nav{
+    width: 1000px;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.nav-item{
+    list-style-type: none;
+}
+
+.navbar a{
+    font-size: 23px;
+    color: white;
+}
+
+.navbar a:hover{
+    color : #badee5;
+}
+
+#current{
+    color: black;
+}
+
+nav{
+    display: inline-block;
+}
+
+#user-icon{
+    font-size: 100px;
+}
+
+.profile-info{
+    display: flex;
+    background-color: #f5f6fa;
+    padding: 40px;
+    height: 140px;
+    justify-content: space-between;
+}
+
+.info-container{
+    display: flex;
+    width: 200px;
+    flex-grow: 2;
+}
+
+main{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+h1{
+    border-left: 4px solid #116db4;
+    padding-left: 10px;
+}
+
+.doctor-info-container{
+    width: 200px;
+    flex-grow: 2;
+    font-size: 20px;
+}
+
+.profile-info-separator-container{
+    width: 150px;
+    flex-grow: 0;
+}
+
+.profile-info-separator{
+    width: 2px;
+    margin: 0 auto;
+    height: 100%;
+    background-color: white;
+}
+
+.photo-container{
+}
+
+.user-info-container{
+    margin-left : 40px;
+    font-size: 20px;
+}
+
+.role-name{
+    font-weight: bold;
+}
+
+.doctor-username{
+    font-weight: bold;
+}
+
+#username-container{
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    color : white;
+}
+
+#username-container a{
+    color: white;
+}
+
+.footer-separator-container{
+    display: flex;
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 1000px;
+    height : 40px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon-container{
+    flex-grow: 0;
+    width : 40px;
+    color : #badee5;
+    display: flex;
+    justify-content: center;
+}
+
+
+.footer-separator{
+    flex-grow: 2;
+    width : 200px;
+    height: 2px;
+    background-color:#dadbe1;
+}
+
+.copyright-container{
+    font-size: 22px;
+    width: 348px;
+    color : #6a6969;
+    margin: 0 auto;
+}
