@@ -2,28 +2,36 @@
 <html lang="en" xmlns:th="https://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Авторизация</title>
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
 </head>
 <body>
 <div class="background">
     <div class="shape"></div>
     <div class="shape"></div>
 </div>
-<form method="post" action="/api/authorization/login">
-    <h3>Login</h3>
 
-    <label for="username">Username</label>
-    <input type="text" id="username" name="username" placeholder="Email or Phone" >
+<div class="registration-cssave">
+    <form th:method="POST" th:action="@{/api/authorization/login}">
+        <h3 class="text-center">Авторизация</h3>
 
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password" placeholder="Password">
+        <div class="form-group">
+            <input class="form-control item" type="text" name="username" id="username" placeholder="Логин" required>
+        </div>
 
-    <button>Log In</button>
-    <div class="social">
-        <p><a href="/api/authorization/registration">Sign up</a></p>
-        <p class="go">  No account?</p>
-        <button class="but" type="submit" onclick="/api/authorization/registration">Sign up</button>
-    </div>
-</form>
+        <div class="form-group">
+            <input class="form-control item" type="password" name="password" id="password" placeholder="Пароль" required>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary btn-block create-account" type="submit">Войти на сайт</button>
+        </div>
+
+        <div class="form-group">
+            <p class="go">У вас уже есть аккаунт?</p>
+            <p><a href="/api/authorization/registration">Зарегестрироваться</a></p>
+        </div>
+    </form>
+</div>
 </body>
 </html>

@@ -40,4 +40,8 @@ public class Patient {
 
     @OneToMany(mappedBy = "patient")
     private List<Appointment> appointments;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

@@ -4,7 +4,8 @@ CREATE TABLE IF NOT EXISTS patients
     first_name  VARCHAR(256) NOT NULL ,
     last_name  VARCHAR(256) NOT NULL,
     middle_name  VARCHAR(256) NOT NULL,
-    doctor_id INTEGER
+    doctor_id INTEGER,
+    user_id INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS doctors
@@ -12,7 +13,8 @@ CREATE TABLE IF NOT EXISTS doctors
     id    SERIAL NOT NULL PRIMARY KEY ,
     first_name  VARCHAR(256) NOT NULL ,
     last_name  VARCHAR(256) NOT NULL,
-    middle_name  VARCHAR(256) NOT NULL
+    middle_name  VARCHAR(256) NOT NULL,
+    user_id INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS prescriptions

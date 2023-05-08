@@ -1,6 +1,8 @@
 package org.example.service;
 
+import org.example.model.Doctor;
 import org.example.model.Patient;
+import org.example.model.User;
 import org.example.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,5 +45,13 @@ public class PatientService implements TableService<Patient>{
     public boolean deleteEntity(long id) {
         patientRepository.deleteById(id);
         return true;
+    }
+
+    public Doctor getDoctorByPatient (long id){
+        return patientRepository.getById(id).getDoctor();
+    }
+
+    public Patient findByUser(long id){
+        return patientRepository.findByUserId(id);
     }
 }

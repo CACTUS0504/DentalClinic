@@ -1,11 +1,14 @@
 package org.example.service;
 
+import org.example.model.Patient;
 import org.example.model.Role;
 import org.example.model.User;
 import org.example.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -54,8 +57,12 @@ public class UserService implements UserDetailsService {
 
         userRepository.save(user);
 
-        System.out.println("dscds");
+        return "/api/authorization/login";
+    }
 
-        return "api/authorization/login";
+    public User getCurrentUser(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userRepository.findByUsername(auth.getName());
+        return user;
     }
 }

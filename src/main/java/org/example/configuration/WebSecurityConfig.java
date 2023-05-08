@@ -37,14 +37,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()//Отключает CSRF Protection, поскольку она не нужна для API
                 .authorizeRequests()
-                .antMatchers("/", "/home", "/api/authorization/registration","/api/authorization/login")//исключение, какие запросы\страницы
+                .antMatchers("/", "/home", "/api/authorization/registration","/api/authorization/login", "/css/**", "/img/**", "/font-awesome-4.7.0/**")//исключение, какие запросы\страницы
                 .permitAll()//будут разрешены всем
+                .antMatchers("/api/patients/**").hasRole("USER") // В БД дожны быть приписки ROLE_
                 .anyRequest()
                 .authenticated()//Декларирует, что все запросы к любой конечной точке должны быть авторизованы, иначе они должны быть отклонены.
                 .and()
                 .formLogin()
                 .loginPage("/api/authorization/login").permitAll()//разрешить всем доступ к странице логинизации
-                .defaultSuccessUrl("/api/doctors", true)//по умолчанию страница
+                .defaultSuccessUrl("/", true)//по умолчанию страница
+                .and()
+                .logout()
+                .logoutUrl("/api/authorization/logout")
+                .logoutSuccessUrl("/api/authorization/login")
                 .and()
                 .rememberMe()
                 .tokenValiditySeconds((int) TimeUnit.MINUTES.toSeconds(5))
