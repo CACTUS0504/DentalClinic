@@ -26,8 +26,11 @@ public class Review {
     @Column(name = "content")
     private String content;
 
+    @Column(name = "rating")
+    private Integer rating;
+
     @ManyToOne
-    @JoinColumn(name="doctor_id", insertable = false, updatable = false)
+    @JoinColumn(name="doctor_id")
     @JsonIgnore
     private Doctor doctor;
 }

@@ -152,3 +152,8 @@ button{
     margin-top:20px;
     margin-left: -5px;
 }
+
+#message{
+    margin-top : 20px;
+    font-size : 18px;
+}

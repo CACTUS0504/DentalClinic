@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -31,7 +32,7 @@ public class Patient {
     private String middleName;
 
     @ManyToOne
-    @JoinColumn(name="doctor_id", insertable = false, updatable = false)
+    @JoinColumn(name="doctor_id")
     @JsonIgnore
     private Doctor doctor;
 

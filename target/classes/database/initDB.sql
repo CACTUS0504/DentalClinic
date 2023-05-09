@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS reviews
     id    SERIAL NOT NULL PRIMARY KEY ,
     title  VARCHAR(256) NOT NULL ,
     content  VARCHAR(256) NOT NULL ,
+    rating INTEGER NOT NULL,
     doctor_id INTEGER
 );
 

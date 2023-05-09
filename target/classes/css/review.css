@@ -86,27 +86,16 @@ h1{
     color: white;
 }
 
-
 .box {
     width: 120px;
+    height: 30px;
     border: 1px solid #999;
     font-size: 18px;
     color: #1c87c9;
     background-color: #eee;
     border-radius: 5px;
     box-shadow: 4px 4px #ccc;
-}
-
-.box-date{
-    width: 120px;
-    height: 30px;
-    border: 1px solid #999;
-    font-size: 16px;
-    color: #1c87c9;
-    background-color: #eee;
-    border-radius: 5px;
-    box-shadow: 4px 4px #ccc;
-}
+    }
 
 .footer-separator-container{
     display: flex;
@@ -141,19 +130,101 @@ h1{
 }
 
 button{
-    display : block;
     border-radius:30px;
-    padding:16px 30px;
-    font-size:18px;
+    padding:8px 16px;
+    font-size:14px;
     font-weight:bold;
     background-color:#3f93ff;
     border:none;
     color:white;
     margin-top:20px;
-    margin-left: -5px;
+    margin-left: 15px;
 }
 
-#message{
-    margin-top : 20px;
-    font-size : 18px;
-}
+
+* {
+    box-sizing: border-box;
+ }
+ .decor {
+    position: relative;
+    max-width: 400px;
+    background: white;
+    border-radius: 30px;
+    border: 10px solid #4696a7;
+ }
+ .form-inner {
+    padding: 30px;
+ }
+ .form-inner input, .form-inner textarea {
+    display: block;
+    width: 100%;
+    padding: 0 20px;
+    margin-bottom: 10px;
+    background: #E9EFF6;
+    line-height: 40px;
+    border-width: 0;
+    border-radius: 20px;
+    font-family: 'Roboto', sans-serif;
+ }
+ .form-inner input[type="submit"] {
+    margin-top: 30px;
+    background: #4696a7;
+    border-bottom: 4px solid #4696a7;
+    color: white;
+    font-size: 14px;
+ }
+ .form-inner textarea {
+    resize: none;
+ }
+ .form-inner h3 {
+    margin-top: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    color: #707981;
+ }
+
+ .please{
+    color : #707981
+ }
+
+ .rating-area {
+ 	overflow: hidden;
+ 	width: 220px;
+    margin-top : 25px;
+ }
+ .rating-area:not(:checked) > input {
+ 	display: none;
+ }
+ .rating-area:not(:checked) > label {
+ 	float: right;
+ 	width:   42px;
+ 	padding: 0;
+ 	cursor: pointer;
+ 	font-size: 32px;
+ 	line-height: 32px;
+ 	color: lightgrey;
+ 	text-shadow: 1px 1px #bbb;
+ }
+ .rating-area:not(:checked) > label:before {
+ 	content: '★';
+ }
+ .rating-area > input:checked ~ label {
+ 	color: gold;
+ 	text-shadow: 1px 1px #c60;
+ }
+ .rating-area:not(:checked) > label:hover,
+ .rating-area:not(:checked) > label:hover ~ label {
+ 	color: gold;
+ }
+ .rating-area > input:checked + label:hover,
+ .rating-area > input:checked + label:hover ~ label,
+ .rating-area > input:checked ~ label:hover,
+ .rating-area > input:checked ~ label:hover ~ label,
+ .rating-area > label:hover ~ input:checked ~ label {
+ 	color: gold;
+ 	text-shadow: 1px 1px goldenrod;
+ }
+ .rate-area > label:active {
+ 	position: relative;
+ }

@@ -1,32 +1,52 @@
 package org.example.controller;
 
+import org.example.model.Doctor;
 import org.example.model.Review;
+import org.example.service.PatientService;
 import org.example.service.ReviewService;
+import org.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/api/reviews")
+@RequestMapping("/api")
 public class ReviewController {
 
     private final ReviewService reviewService;
+    private final PatientService patientService;
+    private final UserService userService;
 
     @Autowired
-    ReviewController(ReviewService reviewService){
+    ReviewController(ReviewService reviewService, PatientService patientService, UserService userService){
         this.reviewService = reviewService;
+        this.patientService = patientService;
+        this.userService = userService;
     }
 
     // Добавить view
-    @GetMapping(value="")
-    @ResponseBody
-    public List<Review> readAll(Model model) {
-        model.addAttribute("reviews", reviewService.readAllEntity());
-        return reviewService.readAllEntity();
+//    @GetMapping(value="")
+//    @ResponseBody
+//    public List<Review> readAll(Model model) {
+//        model.addAttribute("reviews", reviewService.readAllEntity());
+//        return reviewService.readAllEntity();
+//    }
+
+    @GetMapping("/patients/review")
+    public String getReviewPage(@ModelAttribute Review review, Model model){
+        Doctor doctor = patientService.findByUser(userService.getCurrentUser().getId()).getDoctor();
+        model.addAttribute("currentUser", userService.getCurrentUser());
+        if (doctor == null)
+            return "patient/no_doctor";
+        model.addAttribute(doctor);
+        return "/patient/review";
+    }
+
+    @PostMapping("/patients/review")
+    public String createReview(@ModelAttribute Review review){
+        review.setDoctor(patientService.findByUser(userService.getCurrentUser().getId()).getDoctor());
+        reviewService.createEntity(review);
+        return "/patient/review";
     }
 }

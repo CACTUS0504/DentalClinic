@@ -30,12 +30,12 @@ public class Appointment {
     private Date appointment_date;
 
     @ManyToOne
-    @JoinColumn(name="doctor_id", insertable = false, updatable = false)
+    @JoinColumn(name="doctor_id")
     @JsonIgnore
     private Doctor doctor;
 
     @ManyToOne
-    @JoinColumn(name="doctor_id", insertable = false, updatable = false)
+    @JoinColumn(name="patient_id")
     @JsonIgnore
     private Patient patient;
 }

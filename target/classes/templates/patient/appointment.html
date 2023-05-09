@@ -14,14 +14,14 @@
             <ul class="navbar">
                 <li class = "nav-item"><a href="/api/patients/cabinet">Личный кабинет</a></li>
                 <li class = "nav-item"><a id = "current" href="#">Запись</a></li>
-                <li class = "nav-item"><a href="#">Оставить отзыв</a></li>
+                <li class = "nav-item"><a href="/api/patients/review">Оставить отзыв</a></li>
                 <li class = "nav-item"><a href="#">Прочитать рецепт</a></li>
             </ul>
         </nav>
         <div id = "username-container">
-            <div id = "username">CACTUS</div>
+            <div id = "username" th:text="${currentUser.username}"></div>
             <div class = "logout-container">
-                <a class = "logout-button" href = "#">
+                <a class = "logout-button" href = "/api/authorization/logout">
                     Выход
                 </a>
                 <i class="fa fa-sign-out" aria-hidden="true">
@@ -31,14 +31,16 @@
     </header>
 <main>
     <h1>Запись</h1>
-    <h2>Записаться к врачу: Иванов Иван Иванович</h2>
+    <h2>Записаться к врачу:
+        <h2 th:text = "${doctor.lastName + ' ' + doctor.firstName + ' ' + doctor.middleName}"></h2>
+    </h2>
     <h2>Выберите дату:</h2>
     <form th:method="POST" th:action="@{/api/patients/appointment}">
         <input type="date" id="date"
                th:value="${currentDate}"
-               th:min="${currentDate}" max="2025-12-31"  class = "box-date" name="date">
+               th:min="${currentDate}" max="2025-12-31"  class = "box-date" name="date" required>
         <h2>Выберите время:</h2>
-        <select class="box" size = 5 name = "time" id = "time">
+        <select class="box" size = 5 name = "time" id = "time" required>
             <option th:value="'9:00'">9:00</option>
             <option th:value="'9:30'">9:30</option>
             <option th:value="'10:00'">10:00</option>
@@ -59,6 +61,7 @@
             <option th:value="'18:00'">18:00</option>
         </select>
         <button type="submit">Записаться</button>
+        <div id="message" th:text="${message}"> </div>
     </form>
 </main>
 <footer>

@@ -70,6 +70,10 @@ main{
     margin: 0 auto;
 }
 
+.login{
+    margin-top : -10px;
+}
+
 h1{
     border-left: 4px solid #116db4;
     padding-left: 10px;
@@ -103,10 +107,12 @@ h1{
 
 .role-name{
     font-weight: bold;
+    font-size : 18px;
 }
 
 .doctor-username{
     font-weight: bold;
+    font-size : 18px;
 }
 
 #username-container{
