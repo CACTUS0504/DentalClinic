@@ -45,7 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/api/authorization/login").permitAll()//разрешить всем доступ к странице логинизации
-                .defaultSuccessUrl("/", true)//по умолчанию страница
+                .defaultSuccessUrl("/", true)//Страница при успешном входе
                 .and()
                 .logout()
                 .logoutUrl("/api/authorization/logout")

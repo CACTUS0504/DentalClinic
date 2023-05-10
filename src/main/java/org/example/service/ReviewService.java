@@ -46,4 +46,8 @@ public class ReviewService implements TableService<Review>{
         reviewRepository.deleteById(id);
         return true;
     }
+
+    public List<Review> findAllByDoctorId(long doctor){
+        return reviewRepository.findAllByDoctorId(doctor);
+    }
 }

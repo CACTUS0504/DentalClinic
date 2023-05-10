@@ -25,14 +25,6 @@ public class ReviewController {
         this.userService = userService;
     }
 
-    // Добавить view
-//    @GetMapping(value="")
-//    @ResponseBody
-//    public List<Review> readAll(Model model) {
-//        model.addAttribute("reviews", reviewService.readAllEntity());
-//        return reviewService.readAllEntity();
-//    }
-
     @GetMapping("/patients/review")
     public String getReviewPage(@ModelAttribute Review review, Model model){
         Doctor doctor = patientService.findByUser(userService.getCurrentUser().getId()).getDoctor();
@@ -44,9 +36,12 @@ public class ReviewController {
     }
 
     @PostMapping("/patients/review")
-    public String createReview(@ModelAttribute Review review){
+    public String createReview(@ModelAttribute Review review, Model model){
+        Doctor doctor = patientService.findByUser(userService.getCurrentUser().getId()).getDoctor();
+        model.addAttribute("currentUser", userService.getCurrentUser());
         review.setDoctor(patientService.findByUser(userService.getCurrentUser().getId()).getDoctor());
         reviewService.createEntity(review);
+        model.addAttribute(doctor);
         return "/patient/review";
     }
 }

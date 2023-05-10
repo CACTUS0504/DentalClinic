@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.model.Role;
 import org.example.model.User;
 import org.example.service.UserService;
 import org.springframework.security.core.Authentication;
@@ -18,7 +19,15 @@ public class HomeController {
 
     @GetMapping(value="")
     public String showHome(Model model) {
+        User currentUser = userService.getCurrentUser();
         model.addAttribute("currentUser", userService.getCurrentUser());
-        return "home";
+        for (Role role : currentUser.getRoles()){
+            if (role.getName().equals("ROLE_ADMIN")){
+                return "admin/home";
+            } else if (role.getName().equals("ROLE_DOCTOR")){
+                return "doctor/home";
+            }
+        }
+        return "patient/home";
     }
 }
