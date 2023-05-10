@@ -27,7 +27,7 @@ public class Prescription {
     private String content;
 
     @ManyToOne
-    @JoinColumn(name="patient_id", insertable = false, updatable = false)
+    @JoinColumn(name="patient_id")
     @JsonIgnore
     private Patient patient;
 }

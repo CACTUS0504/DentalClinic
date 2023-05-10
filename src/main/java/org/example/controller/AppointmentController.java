@@ -2,7 +2,9 @@ package org.example.controller;
 
 import org.example.model.Appointment;
 import org.example.model.Doctor;
+import org.example.model.User;
 import org.example.service.AppointmentService;
+import org.example.service.DoctorService;
 import org.example.service.PatientService;
 import org.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +25,14 @@ public class AppointmentController {
     private final AppointmentService appointmentService;
     private final PatientService patientService;
     private final UserService userService;
+    private final DoctorService doctorService;
 
     @Autowired
-    AppointmentController(AppointmentService appointmentService, PatientService patientService, UserService userService){
+    AppointmentController(AppointmentService appointmentService, PatientService patientService, UserService userService, DoctorService doctorService){
         this.appointmentService = appointmentService;
         this.patientService = patientService;
         this.userService = userService;
+        this.doctorService = doctorService;
     }
 
     // Добавить view
@@ -63,7 +67,7 @@ public class AppointmentController {
         boolean date_ok = true;
         if (appointments != null){
             for (Appointment appointment : appointments) {
-                if (appointment.getAppointment_date().compareTo(date_formatted) == 0) {
+                if (appointment.getAppointmentDate().compareTo(date_formatted) == 0) {
                     model.addAttribute("message", "Это время уже занято, попробуйте другое");
                     date_ok = false;
                     break;
@@ -75,7 +79,7 @@ public class AppointmentController {
             appointment.setPatient(patientService.findByUser(userService.getCurrentUser().getId()));
             appointment.setTitle("Описание записи");
             appointment.setDoctor(doctor);
-            appointment.setAppointment_date(date_formatted);
+            appointment.setAppointmentDate(date_formatted);
             appointmentService.createEntity(appointment);
             model.addAttribute("message", "Вы были успешно записаны к врачу");
         }
@@ -87,5 +91,17 @@ public class AppointmentController {
         model.addAttribute("doctor", doctor );
 
         return "/patient/appointment";
+    }
+
+    @GetMapping(value = "doctor/appointments")
+    public String returnAppointments(Model model) {
+        User currentUser = userService.getCurrentUser();
+        Doctor doctor = doctorService.findByUser(currentUser.getId());
+        List<Appointment> appointments = doctor.getAppointments();
+
+        model.addAttribute("currentUser", userService.getCurrentUser());
+        if (appointments.isEmpty()) return "/doctor/no_appointments";
+        model.addAttribute("appointments", appointments);
+        return "/doctor/show_appointments";
     }
 }

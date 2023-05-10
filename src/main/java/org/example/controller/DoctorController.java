@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
-@RequestMapping("/api/doctors")
+@RequestMapping("/api/doctor")
 public class DoctorController {
 
     private final DoctorService doctorService;

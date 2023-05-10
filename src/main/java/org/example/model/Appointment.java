@@ -27,7 +27,7 @@ public class Appointment {
     private String title;
 
     @Column(name = "appointment_date")
-    private Date appointment_date;
+    private Date appointmentDate;
 
     @ManyToOne
     @JoinColumn(name="doctor_id")

@@ -17,7 +17,7 @@ a{
 }
 
 nav{
-    width: 900px;
+    width: 1000px;
 }
 
 .navbar{
@@ -45,7 +45,7 @@ h1 {
 }
 
 .img-container{
-    background-image: url("main_img.jpg");
+    background-image: url("/img/main_img.jpg");
     background-size: 100% 100%;
     border-top: 1px solid transparent;
     height : 91vh;
