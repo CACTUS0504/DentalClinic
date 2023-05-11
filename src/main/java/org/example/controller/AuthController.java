@@ -45,6 +45,7 @@ public class AuthController {
         user.getRoles().add(role);
         role.getUsers().add(user);
         patient.setUser(user);
+        user.setIsBanned(false);
         userService.signUpUser(user);
         patientService.createEntity(patient);
         return "authorization/login";

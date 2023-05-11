@@ -2,9 +2,10 @@
 <html lang="en" xmlns:th="https://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Нет рецептов</title>
-    <link rel="stylesheet" type="text/css" href="/css/prescription.css">
-    <script src="https://kit.fontawesome.com/952a0c1369.js" crossorigin="anonymous"></script>
+    <title>Сменить врача</title>
+    <link rel="stylesheet" type="text/css" href="/css/doctor/cabinet.css">
+    <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
 <header class = "navbar-container">
@@ -28,9 +29,15 @@
     </div>
 </header>
 <main>
-    <h1>Ошибка</h1>
-    <h2 class = "please">Вам пока не выписали ни одного рецепта<br>
-        Если вам нужен рецепт, попросите врача его выписать</h2>
+    <h1>Сменить врача</h1>
+    <h2>Выберите нового врача:</h2>
+    <ol class="pills" th:each="reviewedDoctors : ${reviewedDoctors}">
+        <li>
+            <h3 th:text="${reviewedDoctors.key.lastName + ' ' + reviewedDoctors.key.firstName + ' ' + reviewedDoctors.key.middleName}"></h3>
+            <h3 th:text="${reviewedDoctors.value != 0} ? ${reviewedDoctors.value} : 'Нет отзывов'"></h3>
+            <a th:href="'/api/patients/change-doctor/' + ${reviewedDoctors.key.id}">Сменить врача</a>
+        </li>
+    </ol>
 </main>
 <footer>
     <div class = "footer-separator-container">

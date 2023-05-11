@@ -1,6 +1,7 @@
 package org.example.service;
 
 import org.example.model.Patient;
+import org.example.model.Review;
 import org.example.model.Role;
 import org.example.model.User;
 import org.example.repository.UserRepository;
@@ -17,12 +18,37 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+
+    public void createEntity(User user) {
+        userRepository.save(user);
+    }
+
+    public List<User> readAllEntity() {
+        return userRepository.findAll();
+    }
+
+    public User readOneEntity(long id) {
+        return userRepository.getById(id);
+    }
+
+    public boolean updateEntity(User user, long id) {
+        user.setId(id);
+        userRepository.save(user);
+        return true;
+    }
+
+    public boolean deleteEntity(long id) {
+
+        userRepository.deleteById(id);
+        return true;
+    }
 
     @Autowired
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {

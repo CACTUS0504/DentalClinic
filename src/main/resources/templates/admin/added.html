@@ -2,17 +2,16 @@
 <html lang="en" xmlns:th="https://thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>У вас пока нет пациентов</title>
-  <link rel="stylesheet" type="text/css" href="/css/doctor/home.css">
+  <title>Пациент добавлен</title>
+  <link rel="stylesheet" type="text/css" href="/css/doctor/show_appointments.css">
   <script src="https://kit.fontawesome.com/952a0c1369.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <header class = "navbar-container">
   <nav>
     <ul class="navbar">
-      <li class = "nav-item"><a href="/api/doctor/cabinet">Личный кабинет</a></li>
-      <li class = "nav-item"><a href="/api/doctor/prescription">Выписать рецепт</a></li>
-      <li class = "nav-item"><a href="/api/doctor/appointments">Просмотреть записи</a></li>
+      <li class = "nav-item"><a href="/api/admin/ban">Забанить пользователя</a></li>
+      <li class = "nav-item"><a href="/api/admin/add-doctor">Добавить врача</a></li>
     </ul>
   </nav>
   <div id = "username-container">
@@ -27,9 +26,8 @@
   </div>
 </header>
 <main>
-  <h1>Ошибка</h1>
-  <h2 class = "please">Извините, к вам пока не прикреплён ни один пациент<br>
-    Пациенты могут прикрепиться к вам в своём личном кабинете</h2>
+  <h1>Уведомление</h1>
+  <h2 class = "please">Пользователь был успешно добавлен</h2>
 </main>
 <footer>
   <div class = "footer-separator-container">

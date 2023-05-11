@@ -146,6 +146,5 @@ h1{
     background: #4696a7;
     border-bottom-left-radius: 70em;
     border-top-left-radius: 70em;
-    counter-increment: li;
-    content: counter(li);
+    content: ' ';
   }

@@ -14,7 +14,7 @@
             <ul class="navbar">
                 <li class = "nav-item"><a href="/api/patients/cabinet">Личный кабинет</a></li>
                 <li class = "nav-item"><a href="/api/patients/appointment">Запись</a></li>
-                <li class = "nav-item"><a href="/api/patients/review">Оставить отзыв</a></li>
+                <li class = "nav-item" id = "current"><a href="/api/patients/review">Оставить отзыв</a></li>
                 <li class = "nav-item"><a href="/api/patient/prescription">Прочитать рецепт</a></li>
             </ul>
         </nav>
@@ -36,7 +36,7 @@
     <form class="decor" th:method="POST" th:action="@{/api/patients/review}">
         <div class="form-inner">
         <h3>Опишите свои впечатления</h3>
-        <input type="text" placeholder="Заголововок отзыва" th:field="${review.title}" required>
+        <input type="text" placeholder="Заголовок отзыва" th:field="${review.title}" required>
         <textarea placeholder="Сообщение..." rows="3" th:field="${review.content}" required></textarea>
         <div class="rating-area" th:field="${review.rating}">
             <input type="radio" id="star-5" name="rating" value="5" required>

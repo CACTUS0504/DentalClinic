@@ -47,7 +47,8 @@ CREATE TABLE IF NOT EXISTS users
 (
     id    SERIAL NOT NULL PRIMARY KEY ,
     username VARCHAR(256) NOT NULL,
-    password VARCHAR(256) NOT NULL
+    password VARCHAR(256) NOT NULL,
+    is_banned BOOLEAN NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS roles
