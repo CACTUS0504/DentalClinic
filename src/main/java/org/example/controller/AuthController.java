@@ -32,7 +32,6 @@ public class AuthController {
         return "authorization/registration";
     }
 
-
     @GetMapping("/login")
     public String getLoginPage() {
         return "authorization/login";

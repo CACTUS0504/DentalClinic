@@ -35,17 +35,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()//Отключает CSRF Protection, поскольку она не нужна для API
+                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "/home", "/api/authorization/registration","/api/authorization/login", "/css/**", "/img/**", "/font-awesome-4.7.0/**")//исключение, какие запросы\страницы
                 .permitAll()//будут разрешены всем
-                .antMatchers("/api/patients/**").hasRole("USER") // В БД дожны быть приписки ROLE_
+                .antMatchers("/api/patients/**").hasRole("USER")
                 .anyRequest()
-                .authenticated()//Декларирует, что все запросы к любой конечной точке должны быть авторизованы, иначе они должны быть отклонены.
+                .authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/api/authorization/login").permitAll()//разрешить всем доступ к странице логинизации
-                .defaultSuccessUrl("/", true)//Страница при успешном входе
+                .loginPage("/api/authorization/login").permitAll()
+                .defaultSuccessUrl("/", true)
                 .and()
                 .logout()
                 .logoutUrl("/api/authorization/logout")

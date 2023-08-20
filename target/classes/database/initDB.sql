@@ -30,8 +30,8 @@ CREATE TABLE IF NOT EXISTS appointments
     id    SERIAL NOT NULL PRIMARY KEY ,
     title  VARCHAR(256) NOT NULL ,
     appointment_date TIMESTAMP NOT NULL ,
-    doctor_id INTEGER ,
-    patient_id INTEGER
+    doctor_id INTEGER NOT NULL,
+    patient_id INTEGER NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS reviews

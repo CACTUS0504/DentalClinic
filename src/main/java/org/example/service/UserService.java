@@ -62,6 +62,8 @@ public class UserService implements UserDetailsService {
         User applicationUser = userRepository.findByUsername(username);
         if (applicationUser == null) {
             throw new UsernameNotFoundException(String.format("Username: %s not found", username));
+        } else if (applicationUser.getIsBanned()) {
+            throw new UsernameNotFoundException(String.format("Username: %s is banned", username));
         }
         return new org.springframework.security.core.userdetails.User(applicationUser.getUsername(), applicationUser.getPassword(),
                 mapRolesToAuthorities(applicationUser.getRoles()));

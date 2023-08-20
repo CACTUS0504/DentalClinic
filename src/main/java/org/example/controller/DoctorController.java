@@ -63,6 +63,7 @@ public class DoctorController {
         } else {
             model.addAttribute("patients", doctor.getPatients());
         }
+
         return "doctor/cabinet";
     }
 }
