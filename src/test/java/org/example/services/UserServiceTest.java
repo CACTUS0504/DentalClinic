@@ -3,7 +3,6 @@ package org.example.services;
 import org.example.model.User;
 import org.example.repository.UserRepository;
 import org.example.service.UserService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,6 +20,7 @@ public class UserServiceTest {
 
     @Mock
     private UserRepository userRepository;
+
     private UserService underTest;
 
     @BeforeEach
@@ -61,5 +61,48 @@ public class UserServiceTest {
         assertThat(expected.get(0).getUsername()).isEqualTo("Matvey");
         assertThat(expected.get(1).getUsername()).isEqualTo("Yuriy");
 
+    }
+
+    @Test
+    void readOneEntityTest() {
+        User user = new User();
+        user.setUsername("Matvey");
+        user.setId(1L);
+        user.setPassword("12345");
+
+        Mockito.when(userRepository.getById(1L)).thenReturn(user);
+        User expected = underTest.readOneEntity(1L);
+
+        Mockito.verify(userRepository, Mockito.times(1)).getById(1L);
+        assertThat(expected.getUsername()).isEqualTo("Matvey");
+
+    }
+
+    @Test
+    void updateEntityTest() {
+        User user = new User();
+        user.setUsername("Matvey");
+        user.setId(1L);
+        underTest.updateEntity(user, user.getId());
+
+        Mockito.verify(userRepository, Mockito.times(1)).save(user);
+    }
+
+    @Test
+    void deleteEntity(){
+        underTest.deleteEntity(1L);
+        Mockito.verify(userRepository, Mockito.times(1)).deleteById(1L);
+    }
+
+    @Test
+    void signUpUserTest(){
+        User user = new User();
+        user.setUsername("Matvey");
+        user.setId(1L);
+        user.setPassword("12345");
+
+        underTest.signUpUser(user);
+        Mockito.verify(userRepository, Mockito.times(1)).findByUsername(user.getUsername());
+        Mockito.verify(userRepository, Mockito.times(1)).save(user);
     }
 }

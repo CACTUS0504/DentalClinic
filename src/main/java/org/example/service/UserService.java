@@ -1,7 +1,5 @@
 package org.example.service;
 
-import org.example.model.Patient;
-import org.example.model.Review;
 import org.example.model.Role;
 import org.example.model.User;
 import org.example.repository.UserRepository;
@@ -45,7 +43,6 @@ public class UserService implements UserDetailsService {
     }
 
     public boolean deleteEntity(long id) {
-
         userRepository.deleteById(id);
         return true;
     }
@@ -89,8 +86,13 @@ public class UserService implements UserDetailsService {
     }
 
     public User getCurrentUser(){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userRepository.findByUsername(auth.getName());
+        User user = null;
+        try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            user = userRepository.findByUsername(auth.getName());
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
         return user;
     }
 }
