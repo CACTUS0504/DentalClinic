@@ -5,14 +5,16 @@ import org.example.model.Patient;
 import org.example.model.User;
 import org.example.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PatientService implements TableService<Patient>{
 
-    private PatientRepository patientRepository;
+    private final PatientRepository patientRepository;
 
     @Autowired
     PatientService(PatientRepository patientRepository){
@@ -31,7 +33,9 @@ public class PatientService implements TableService<Patient>{
 
     @Override
     public Patient readOneEntity(long id) {
-        return patientRepository.getById(id);
+        Optional<Patient> optionalPatient = patientRepository.findById(id);
+        if (optionalPatient.isPresent()) return optionalPatient.get();
+        else throw new IllegalArgumentException("Patient with id = " + id + " doesn't exist");
     }
 
     @Override
@@ -43,8 +47,10 @@ public class PatientService implements TableService<Patient>{
 
     @Override
     public boolean deleteEntity(long id) {
-        patientRepository.deleteById(id);
-        return true;
+        if (patientRepository.findById(id).isPresent()){
+            patientRepository.deleteById(id);
+            return true;
+        } else return false;
     }
 
     public Doctor getDoctorByPatient (long id){

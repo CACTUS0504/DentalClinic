@@ -1,10 +1,12 @@
 package org.example.service;
 
+import org.example.model.Review;
 import org.example.model.Role;
 import org.example.repository.RoleRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RoleService implements TableService<Role>{
@@ -26,7 +28,9 @@ public class RoleService implements TableService<Role>{
 
     @Override
     public Role readOneEntity(long id) {
-        return roleRepository.getById(id);
+        Optional<Role> roleOptional = roleRepository.findById(id);
+        if (roleOptional.isPresent()) return roleOptional.get();
+        else throw new IllegalArgumentException("Role with id = " + id + " doesn't exist");
     }
 
     @Override
@@ -38,8 +42,10 @@ public class RoleService implements TableService<Role>{
 
     @Override
     public boolean deleteEntity(long id) {
-        roleRepository.deleteById(id);
-        return true;
+        if (roleRepository.findById(id).isPresent()){
+            roleRepository.deleteById(id);
+            return true;
+        } else return false;
     }
 
     public Role findRoleByName(String name){

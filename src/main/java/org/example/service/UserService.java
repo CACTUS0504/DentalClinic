@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,7 +34,9 @@ public class UserService implements UserDetailsService {
     }
 
     public User readOneEntity(long id) {
-        return userRepository.getById(id);
+        Optional<User> userOptional = userRepository.findById(id);
+        if (userOptional.isPresent()) return userOptional.get();
+        else throw new IllegalArgumentException("User with id = " + id + " doesn't exist");
     }
 
     public boolean updateEntity(User user, long id) {
@@ -43,8 +46,10 @@ public class UserService implements UserDetailsService {
     }
 
     public boolean deleteEntity(long id) {
-        userRepository.deleteById(id);
-        return true;
+        if (userRepository.findById(id).isPresent()){
+            userRepository.deleteById(id);
+            return true;
+        } else return false;
     }
 
     @Autowired

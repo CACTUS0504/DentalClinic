@@ -35,7 +35,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "/home", "/api/authorization/registration","/api/authorization/login", "/css/**", "/img/**", "/font-awesome-4.7.0/**")//исключение, какие запросы\страницы
                 .permitAll()//будут разрешены всем

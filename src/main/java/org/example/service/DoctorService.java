@@ -1,5 +1,6 @@
 package org.example.service;
 
+import org.example.model.Appointment;
 import org.example.model.Doctor;
 import org.example.model.Patient;
 import org.example.repository.DoctorRepository;
@@ -9,11 +10,12 @@ import org.springframework.stereotype.Service;
 
 import javax.print.Doc;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DoctorService implements TableService<Doctor>{
 
-    private DoctorRepository doctorRepository;
+    private final DoctorRepository doctorRepository;
 
     @Autowired
     DoctorService(DoctorRepository doctorRepository){
@@ -32,7 +34,9 @@ public class DoctorService implements TableService<Doctor>{
 
     @Override
     public Doctor readOneEntity(long id) {
-        return doctorRepository.getById(id);
+        Optional<Doctor> optionalDoctor = doctorRepository.findById(id);
+        if (optionalDoctor.isPresent()) return optionalDoctor.get();
+        else throw new IllegalArgumentException("Doctor with id = " + id + " doesn't exist");
     }
 
     @Override
@@ -44,8 +48,10 @@ public class DoctorService implements TableService<Doctor>{
 
     @Override
     public boolean deleteEntity(long id) {
-        doctorRepository.deleteById(id);
-        return true;
+        if (doctorRepository.findById(id).isPresent()){
+            doctorRepository.deleteById(id);
+            return true;
+        } else return false;
     }
 
     public Doctor findByUser(long id){

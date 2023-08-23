@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AppointmentService implements TableService<Appointment>{
 
-    private AppointmentRepository appointmentRepository;
+    private final AppointmentRepository appointmentRepository;
 
     @Autowired
     AppointmentService(AppointmentRepository appointmentRepository){
@@ -29,7 +30,9 @@ public class AppointmentService implements TableService<Appointment>{
 
     @Override
     public Appointment readOneEntity(long id) {
-        return appointmentRepository.getById(id);
+        Optional<Appointment> optAppointment = appointmentRepository.findById(id);
+        if (optAppointment.isPresent()) return optAppointment.get();
+        else throw new IllegalArgumentException("Appointment with id = " + id + " doesn't exist");
     }
 
     @Override
@@ -41,7 +44,9 @@ public class AppointmentService implements TableService<Appointment>{
 
     @Override
     public boolean deleteEntity(long id) {
-        appointmentRepository.deleteById(id);
-        return true;
+        if (appointmentRepository.findById(id).isPresent()){
+            appointmentRepository.deleteById(id);
+            return true;
+        } else return false;
     }
 }

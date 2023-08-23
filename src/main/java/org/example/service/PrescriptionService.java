@@ -8,11 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PrescriptionService implements TableService<Prescription>{
 
-    private PrescriptionRepository prescriptionRepository;
+    private final PrescriptionRepository prescriptionRepository;
 
     @Autowired
     PrescriptionService(PrescriptionRepository prescriptionRepository){
@@ -31,7 +32,9 @@ public class PrescriptionService implements TableService<Prescription>{
 
     @Override
     public Prescription readOneEntity(long id) {
-        return prescriptionRepository.getById(id);
+        Optional<Prescription> prescriptionOptional = prescriptionRepository.findById(id);
+        if (prescriptionOptional.isPresent()) return prescriptionOptional.get();
+        else throw new IllegalArgumentException("Prescription with id = " + id + " doesn't exist");
     }
 
     @Override
@@ -43,7 +46,9 @@ public class PrescriptionService implements TableService<Prescription>{
 
     @Override
     public boolean deleteEntity(long id) {
-        prescriptionRepository.deleteById(id);
-        return true;
+        if (prescriptionRepository.findById(id).isPresent()){
+            prescriptionRepository.deleteById(id);
+            return true;
+        } else return false;
     }
 }

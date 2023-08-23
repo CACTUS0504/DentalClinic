@@ -8,11 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReviewService implements TableService<Review>{
 
-    private ReviewRepository reviewRepository;
+    private final ReviewRepository reviewRepository;
 
     @Autowired
     ReviewService(ReviewRepository reviewRepository){
@@ -31,7 +32,9 @@ public class ReviewService implements TableService<Review>{
 
     @Override
     public Review readOneEntity(long id) {
-        return reviewRepository.getById(id);
+        Optional<Review> reviewOptional = reviewRepository.findById(id);
+        if (reviewOptional.isPresent()) return reviewOptional.get();
+        else throw new IllegalArgumentException("Review with id = " + id + " doesn't exist");
     }
 
     @Override
@@ -43,8 +46,10 @@ public class ReviewService implements TableService<Review>{
 
     @Override
     public boolean deleteEntity(long id) {
-        reviewRepository.deleteById(id);
-        return true;
+        if (reviewRepository.findById(id).isPresent()){
+            reviewRepository.deleteById(id);
+            return true;
+        } else return false;
     }
 
     public List<Review> findAllByDoctorId(long doctor){
