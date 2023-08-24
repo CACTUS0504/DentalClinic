@@ -60,7 +60,6 @@ public class PatientController {
             double avgRating = Math.round(totalRating / reviews.size() * 10) / 10d;
             reviewedDoctors.put(doctor, avgRating);
         }
-        // Добавит вывод страницы, когда других докторов нет
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("reviewedDoctors", reviewedDoctors);
         return "/patient/change_doctor";

@@ -1,8 +1,6 @@
 package org.example.service;
 
-import org.example.model.Prescription;
 import org.example.model.Review;
-import org.example.repository.PrescriptionRepository;
 import org.example.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/api/authorization")
 public class AuthController {
-    private UserService userService;
-    private RoleService roleService;
-    private PatientService patientService;
+    private final UserService userService;
+    private final RoleService roleService;
+    private final PatientService patientService;
 
     @Autowired
     public AuthController(UserService userService, RoleService roleService, PatientService patientService) {

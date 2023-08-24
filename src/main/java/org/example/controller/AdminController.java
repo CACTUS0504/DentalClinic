@@ -29,13 +29,14 @@ public class AdminController {
         this.roleService = roleService;
     }
 
-    // Переписать реализацию не на удаление, а на бан
     @GetMapping(value = "admin/ban")
     public String returnBanPage(Model model) {
         User currentUser = userService.getCurrentUser();
         List <User> users = userService.readAllEntity();
         for (int i = 0; i < users.size(); i++){
             if (users.get(i).getUsername().equals(currentUser.getUsername())){
+                users.get(i).setIsBanned(true);
+                userService.updateEntity(users.get(i), users.get(i).getId());
                 users.remove(i);
                 break;
             }
@@ -48,13 +49,6 @@ public class AdminController {
     @GetMapping(value = "admin/ban/{id}")
     public String banUser(Model model, @PathVariable(name = "id") long id) {
         User user = userService.readOneEntity(id);
-        /*if (user.getRoles().get(0).equals("ROLE_PATIENT")){
-            Patient patient = patientService.findByUser(user.getId();
-            patientService.updateEntity(patient, patient.getId());
-            patientService.deleteEntity(patientService.findByUser(user.getId()).getId());
-        } else if (user.getRoles().get(0).equals("ROLE_DOCTOR")) {
-            doctorService.deleteEntity(doctorService.findByUser(user.getId()).getId());
-        }*/
         user.setIsBanned(true);
         userService.updateEntity(user, user.getId());
         model.addAttribute("currentUser", userService.getCurrentUser());

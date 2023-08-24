@@ -15,8 +15,8 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    private UserService userService;
-    private PasswordEncoder passwordEncoder;
+    private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
     public WebSecurityConfig(UserService userService, PasswordEncoder passwordEncoder) {

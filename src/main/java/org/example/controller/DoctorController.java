@@ -30,7 +30,6 @@ public class DoctorController {
         this.reviewService = reviewService;
     }
 
-    // Добавить view
     @ResponseBody
     @GetMapping(value="")
     public List<Doctor> readAll(Model model) {

@@ -1,6 +1,5 @@
 package org.example.service;
 
-import org.example.model.Review;
 import org.example.model.Role;
 import org.example.repository.RoleRepository;
 import org.springframework.stereotype.Service;

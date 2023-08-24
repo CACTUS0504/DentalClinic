@@ -2,10 +2,8 @@ package org.example.service;
 
 import org.example.model.Doctor;
 import org.example.model.Patient;
-import org.example.model.User;
 import org.example.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

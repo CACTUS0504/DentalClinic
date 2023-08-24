@@ -1,14 +1,10 @@
 package org.example.service;
 
-import org.example.model.Appointment;
 import org.example.model.Doctor;
-import org.example.model.Patient;
 import org.example.repository.DoctorRepository;
-import org.example.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.print.Doc;
 import java.util.List;
 import java.util.Optional;
 
