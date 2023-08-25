@@ -37,7 +37,7 @@ public class PrescriptionController {
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("prescription", new Prescription());
         if (doctor == null) return "/patient/no_doctor";
-        return "/doctor/create_prescription";
+        return "doctor/create_prescription";
     }
 
     @PostMapping("/doctor/prescription")
@@ -49,7 +49,7 @@ public class PrescriptionController {
         model.addAttribute("patients", doctor.getPatients());
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("prescription", new Prescription());
-        return "/doctor/create_prescription";
+        return "doctor/create_prescription";
     }
 
     @GetMapping("/patient/prescription")
@@ -58,8 +58,8 @@ public class PrescriptionController {
         Patient patient = patientService.findByUser(userService.getCurrentUser().getId());
         List<Prescription> prescriptions = patient.getPrescriptions();
         model.addAttribute("currentUser", currentUser);
-        if (prescriptions.isEmpty()) return "/patient/no_prescription.html";
+        if (prescriptions.isEmpty()) return "patient/no_prescription.html";
         model.addAttribute("prescriptions", prescriptions);
-        return "/patient/prescription";
+        return "patient/prescription";
     }
 }

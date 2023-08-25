@@ -32,7 +32,7 @@ public class ReviewController {
         if (doctor == null)
             return "patient/no_doctor";
         model.addAttribute(doctor);
-        return "/patient/review";
+        return "patient/review";
     }
 
     @PostMapping("/patients/review")
@@ -42,6 +42,6 @@ public class ReviewController {
         review.setDoctor(patientService.findByUser(userService.getCurrentUser().getId()).getDoctor());
         reviewService.createEntity(review);
         model.addAttribute(doctor);
-        return "/patient/review";
+        return "patient/review";
     }
 }

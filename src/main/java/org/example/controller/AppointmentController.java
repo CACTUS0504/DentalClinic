@@ -51,8 +51,8 @@ public class AppointmentController {
         Doctor doctor = patientService.findByUser(userService.getCurrentUser().getId()).getDoctor();
         model.addAttribute("doctor", doctor);
         model.addAttribute("currentUser", userService.getCurrentUser());
-        if (doctor == null) return "/patient/no_doctor";
-        return "/patient/appointment";
+        if (doctor == null) return "patient/no_doctor";
+        return "patient/appointment";
     }
 
     @PostMapping(value = "patients/appointment")
@@ -90,7 +90,7 @@ public class AppointmentController {
         model.addAttribute("currentUser", userService.getCurrentUser());
         model.addAttribute("doctor", doctor );
 
-        return "/patient/appointment";
+        return "patient/appointment";
     }
 
     @GetMapping(value = "doctor/appointments")
@@ -100,8 +100,8 @@ public class AppointmentController {
         List<Appointment> appointments = doctor.getAppointments();
 
         model.addAttribute("currentUser", userService.getCurrentUser());
-        if (appointments.isEmpty()) return "/doctor/no_appointments";
+        if (appointments.isEmpty()) return "doctor/no_appointments";
         model.addAttribute("appointments", appointments);
-        return "/doctor/show_appointments";
+        return "doctor/show_appointments";
     }
 }

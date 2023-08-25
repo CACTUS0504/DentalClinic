@@ -41,7 +41,7 @@ public class AdminController {
         }
         model.addAttribute("users", users);
         model.addAttribute("currentUser", currentUser);
-        return "/admin/ban";
+        return "admin/ban";
     }
 
     @GetMapping(value = "admin/ban/{id}")
@@ -50,7 +50,7 @@ public class AdminController {
         user.setIsBanned(true);
         userService.updateEntity(user, user.getId());
         model.addAttribute("currentUser", userService.getCurrentUser());
-        return "/admin/banned";
+        return "admin/banned";
     }
 
     @GetMapping(value = "admin/add-doctor")
@@ -58,7 +58,7 @@ public class AdminController {
         model.addAttribute("currentUser", userService.getCurrentUser());
         model.addAttribute("doctor", new Doctor());
         model.addAttribute("user", new User());
-        return "/admin/add_doctor";
+        return "admin/add_doctor";
     }
 
     @PostMapping(value = "admin/add-doctor")
@@ -71,6 +71,6 @@ public class AdminController {
         userService.signUpUser(user);
         doctorService.createEntity(doctor);
         model.addAttribute("currentUser", userService.getCurrentUser());
-        return "/admin/add_doctor";
+        return "admin/add_doctor";
     }
 }

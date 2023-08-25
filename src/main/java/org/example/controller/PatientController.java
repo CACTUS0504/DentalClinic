@@ -42,7 +42,7 @@ public class PatientController {
         model.addAttribute("currentPatient", patient);
         model.addAttribute("doctor", patient.getDoctor());
 
-        return "/patient/cabinet";
+        return "patient/cabinet";
     }
 
     @GetMapping(value = "/change-doctor")
@@ -62,7 +62,7 @@ public class PatientController {
         }
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("reviewedDoctors", reviewedDoctors);
-        return "/patient/change_doctor";
+        return "patient/change_doctor";
     }
 
     @GetMapping(value = "/change-doctor/{id}")
@@ -71,6 +71,6 @@ public class PatientController {
         patient.setDoctor(doctorService.readOneEntity(id));
         patientService.updateEntity(patient, patient.getId());
         model.addAttribute("currentUser", userService.getCurrentUser());
-        return "/patient/doctor_changed";
+        return "patient/doctor_changed";
     }
 }
