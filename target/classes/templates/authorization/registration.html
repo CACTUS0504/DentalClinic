@@ -7,8 +7,8 @@
 </head>
 <body>
 
-<div class="registration-cssave" th:action="@{/api/authorization/registration}" th:object="${user}">
-    <form th:method="POST">
+<div class="registration-cssave" th:object="${user}">
+    <form th:method="POST" th:action="@{/api/authorization/registration}">
         <h3 class="text-center">Регистрация</h3>
 
         <div class="form-group">

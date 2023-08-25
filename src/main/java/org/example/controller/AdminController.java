@@ -35,8 +35,6 @@ public class AdminController {
         List <User> users = userService.readAllEntity();
         for (int i = 0; i < users.size(); i++){
             if (users.get(i).getUsername().equals(currentUser.getUsername())){
-                users.get(i).setIsBanned(true);
-                userService.updateEntity(users.get(i), users.get(i).getId());
                 users.remove(i);
                 break;
             }
