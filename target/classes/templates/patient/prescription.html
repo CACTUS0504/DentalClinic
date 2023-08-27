@@ -34,6 +34,7 @@
         <li>
             <h3 th:text="${prescription.title}"></h3>
             <div class = "content" th:text="${prescription.content}"></div>
+            <a th:href="'/api/prescription/pdf?patient_name=' + ${patient_name} + '&doctor_name=' + ${doctor_name} + '&prescription_body=' + ${prescription.title} + ' ' + ${prescription.content}">Скачать PDF</a>
         </li>
     </ol>
 </main>
