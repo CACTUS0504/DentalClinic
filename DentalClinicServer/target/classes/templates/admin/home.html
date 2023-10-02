@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Домашняя страница</title>
+    <link rel="stylesheet" type="text/css" th:href="@{~/serv/css/doctor/home.css}">
+    <script src="https://kit.fontawesome.com/952a0c1369.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header class = "navbar-container">
+        <nav>
+            <ul class="navbar">
+                <li class = "nav-item"><a th:href="@{~/serv/api/admin/ban}">Забанить пользователя</a></li>
+                <li class = "nav-item"><a th:href="@{~/serv/api/admin/add-doctor}">Добавить врача</a></li>
+            </ul>
+        </nav>
+        <div id = "username-container">
+            <div id = "username" th:text="${currentUser.username}"></div>
+            <div class = "logout-container">
+                <a class = "logout-button" th:href="@{~/serv/api/authorization/login}">
+                    Выход
+                </a>
+                <i class="fa fa-sign-out" aria-hidden="true">
+                </i>
+            </div>
+        </div>
+    </header>
+    <div class = "img-container">
+    <h1>ДОБРО ПОЖАЛОВАТЬ
+    <br>
+    В СТОМАТОЛОГИЮ
+    <br>
+    DENTAL CLINIC
+    </h1>
+    </div>
+</body>
+</html>

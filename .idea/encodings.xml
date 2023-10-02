@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/DentalClinicAuth/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/DentalClinicAuth/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/DentalClinicGateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/DentalClinicGateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/DentalClinicPDF/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/DentalClinicPDF/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/DentalClinicServer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/DentalClinicServer/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/DentalClinicServerDiscovery/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/DentalClinicServerDiscovery/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/untitled/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/untitled/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

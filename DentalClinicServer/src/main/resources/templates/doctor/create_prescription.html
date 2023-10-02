@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Выписать рецепт</title>
+    <link rel="stylesheet" type="text/css" th:href="@{~/serv/css/doctor/create_prescription.css}">
+    <script src="https://kit.fontawesome.com/952a0c1369.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header class = "navbar-container">
+        <nav>
+            <ul class="navbar">
+                <li class = "nav-item"><a th:href="@{~/serv/api/doctor/cabinet}">Личный кабинет</a></li>
+                <li class = "nav-item"><a id = "current" href="#">Выписать рецепт</a></li>
+                <li class = "nav-item"><a th:href="@{~/serv/api/doctor/appointments}">Просмотреть записи</a></li>
+            </ul>
+        </nav>
+        <div id = "username-container">
+            <div id = "username" th:text="${currentUser.username}"></div>
+            <div class = "logout-container">
+                <a class = "logout-button" th:href="@{~/serv/api/authorization/login}">
+                    Выход
+                </a>
+                <i class="fa fa-sign-out" aria-hidden="true">
+                </i>
+            </div>
+        </div>
+    </header>
+<main>
+    <h1>Выписать рецепт</h1>
+    <h2 class = "please">Заполните форму:</h2>
+    <form class="decor" th:method="POST" th:action="@{~/serv} + @{/api/doctor/prescription}">
+        <div class="form-inner">
+        <h3>Выберите пациента:</h3>
+            <select class="box" size = 5 name = "time" id = "time" th:each="patient : ${patients}" required th:field = "${prescription.patient}">
+                <option th:value="${patient.id}" th:text="${patient.lastName + ' ' + patient.firstName + ' ' + patient.middleName}"></option>
+            </select>
+        <h3>Заполните форму:</h3>
+        <input type="text" placeholder="Заголововок рецепта" th:field = "${prescription.title}">
+        <textarea placeholder="Рецепт..." rows="3" th:field = "${prescription.content}"></textarea>
+        <input type="submit" value="Выписать рецепт">
+        </div>
+    </form>
+</main>
+<footer>
+    <div class = "footer-separator-container">
+        <div class = "footer-separator"></div>
+        <div class = "icon-container">
+            <i class="fa fa-plus-square icon" aria-hidden="true"></i>
+        </div>
+        <div class = "footer-separator"></div>
+    </div>
+    <div class = "copyright-container">
+        &copy; 2023 Захаров Матвей Максимович
+    </div>
+</footer>
+</body>
+</html>
